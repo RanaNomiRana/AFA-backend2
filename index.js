@@ -21,70 +21,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Error connecting to MongoDB:', err));
 
-// Route to list all databases
-// app.get('/databases', async (req, res) => {
-//     let client;
-
-//     try {
-//         client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-//         await client.connect();
-//         const adminDb = client.db().admin();
-//         const { databases } = await adminDb.listDatabases();
-//         res.json(databases);
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).send('Error retrieving databases');
-//     } finally {
-//         if (client) {
-//             await client.close();
-//         }
-//     }
-// });
-
-// // Route to list collections in a specified database
-// app.get('/collections/:databaseName', async (req, res) => {
-//     const { databaseName } = req.params;
-//     let client;
-
-//     try {
-//         client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-//         await client.connect();
-//         const db = client.db(databaseName);
-//         const collections = await db.listCollections().toArray(); // Ensure this method is correct for your MongoDB driver version
-//         res.json(collections.map(c => ({ name: c.name })));
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).send('Error retrieving collections');
-//     } finally {
-//         if (client) {
-//             await client.close();
-//         }
-//     }
-// });
-
-// // Route to get data from a specified collection in a specified database
-// app.get('/data/:databaseName/:collectionName', async (req, res) => {
-//     const { databaseName, collectionName } = req.params;
-//     let client;
-
-//     try {
-//         client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-//         await client.connect();
-//         const db = client.db(databaseName);
-//         const collection = db.collection(collectionName);
-//         const data = await collection.find().toArray();
-//         res.json(data);
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).send('Error retrieving collection data');
-//     } finally {
-//         if (client) {
-//             await client.close();
-//         }
-//     }
-// });
-
-// Route to store additional information
+//
 app.post('/store-additional-info', async (req, res) => {
     try {
         const { deviceName, casenumber, additionalInfo, investigatorId } = req.body;
